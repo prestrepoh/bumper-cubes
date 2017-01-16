@@ -1,6 +1,6 @@
 # README #
 
-Bumper Cubes is an implementation of a core software for building minigame-based Unity games.
+Bumper Cubes is a fun and adictive multiplayer multiplatform game developed with Unity!.
 
 #CONTACT INFO#
 
