@@ -1,6 +1,6 @@
 # README #
 
-Bumper Cubes is a fun and adictive multiplayer multiplatform game developed with Unity!.
+Bumper Cubes is a fun and addictive multiplayer multiplatform game developed with Unity!.
 
 #CONTACT INFO#
 
