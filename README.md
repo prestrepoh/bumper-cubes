@@ -5,5 +5,5 @@ Bumper Cubes is a fun and addictive multiplayer multiplatform game developed wit
 #CONTACT INFO#
 
 * Pablo Restrepo - prestrepoh@gmail.com
-* Jaime Rojas - jrojas@ias.com.co
+* Jaime Rojas - jaro.tux@gmail.com
 * Daniel Toro - toro.daniel@gmail.com
