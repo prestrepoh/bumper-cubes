@@ -17,8 +17,7 @@ public class PlayerController : MonoBehaviour {
 		rigidBody = GetComponent<Rigidbody>();
 	}
 		
-	void FixedUpdate ()
-	{
+	void FixedUpdate (){
 		//Player rotation
 		playerRotation = Input.GetAxis("Horizontal") * rotationSpeed * Time.deltaTime;
 		rigidBody.AddTorque(transform.up * playerRotation);
