@@ -2,16 +2,19 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SceneManager{
+public static class SceneManager{
 
-	private int player1Score = 0;
-	private int player2Score = 0;
+	private static int player1Score;
+	private static int player2Score;
 
-	public void scoreGoalForPlayer1(){
-		this.player1Score++;
+	public static void scoreGoalForPlayer1(){
+		player1Score++;
+		Debug.Log("Goal Scored - score:" + player1Score + "-" + player2Score);
 	}
 
-	public void scoreGoalForPlayer2(){
-		this.player2Score++;
+	public static void scoreGoalForPlayer2(){
+		player2Score++;
+		Debug.Log("Goal Scored - score:" + player1Score + "-" + player2Score);
 	}
 }
+
