@@ -40,7 +40,7 @@ public class SceneManager : MonoBehaviour {
 			} else if (player2Score > player1Score) {
 				Debug.Log ("Player 2 wins!");
 			} else {
-				Debug.Log ("It's draw!");
+				Debug.Log ("It's a draw!");
 			}
 		}
 	}
