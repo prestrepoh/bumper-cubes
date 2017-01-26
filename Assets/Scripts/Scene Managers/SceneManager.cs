@@ -30,6 +30,7 @@ public class SceneManager : MonoBehaviour {
 	}
 
 	public void timeUp(){
+		
 		if(!gameHasEnded){
 			
 			gameHasEnded = true;

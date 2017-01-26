@@ -10,6 +10,8 @@ public class TimerManager : MonoBehaviour {
 	public GameObject sceneManager;
 
 	private SceneManager sceneManagerScript;
+	float minutesLeft;
+	float secondsLeft;
 
 	void Start(){
 		sceneManagerScript = sceneManager.GetComponent<SceneManager> ();
@@ -18,12 +20,16 @@ public class TimerManager : MonoBehaviour {
 	void Update () {
 		
 		timeLeft -= Time.deltaTime; 
+		minutesLeft = Mathf.Floor (timeLeft / 60);
+		secondsLeft = Mathf.Floor (timeLeft % 60);
 
 		if (timeLeft <= 0) {
 			timeLeft = 0;
+			minutesLeft = 0;
+			secondsLeft = 0;
 			sceneManagerScript.timeUp ();
 		} 
 
-		timerText.GetComponent<Text>().text = timeLeft.ToString();
+		timerText.GetComponent<Text>().text = minutesLeft.ToString("00") + ":" + secondsLeft.ToString("00");
 	}
 }
