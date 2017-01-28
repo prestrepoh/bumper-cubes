@@ -1,6 +1,8 @@
-﻿using System.Collections;
+﻿using UnityEngine;
+using UnityEngine.SceneManagement;
+using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
+
 
 public class SceneManager : MonoBehaviour {
 
@@ -9,7 +11,7 @@ public class SceneManager : MonoBehaviour {
 	private bool gameHasEnded;
 
 	private ScoreManager scoreManagerScript; 
-
+	private HUDManager hudManagerScript;
 
 	void Start () {
 		player1Score = 0;
@@ -17,6 +19,7 @@ public class SceneManager : MonoBehaviour {
 		gameHasEnded = false;
 
 		scoreManagerScript = gameObject.GetComponentInParent<ScoreManager>( );
+		hudManagerScript = gameObject.GetComponent<HUDManager> ();
 	}
 
 	public void scoreGoalForPlayer1(){
@@ -31,17 +34,37 @@ public class SceneManager : MonoBehaviour {
 
 	public void timeUp(){
 		
-		if(!gameHasEnded){
+		if (!gameHasEnded) {
 			
 			gameHasEnded = true;
 
 			if (player1Score > player2Score) {
-				Debug.Log ("Player 1 wins!");
+				player1Wins ();
 			} else if (player2Score > player1Score) {
-				Debug.Log ("Player 2 wins!");
+				player2Wins ();
 			} else {
-				Debug.Log ("It's a draw!");
+				goToGoldenGoal ();
 			}
 		}
+
+		if(hudManagerScript.allAnimationsHaveFinished()){
+			restartLevel ();
+		}
+	}
+
+	private void player1Wins(){
+		hudManagerScript.startPlayer1WinsAnimation ();
+	}
+
+	private void player2Wins(){
+		hudManagerScript.startPlayer2WinsAnimation ();
+	}
+
+	private void goToGoldenGoal(){
+		Debug.Log ("It's a draw!");
+	}
+
+	private void restartLevel(){
+		Debug.Log ("Level would be restarted");
 	}
 }
