@@ -5,16 +5,18 @@ using UnityEngine.UI;
 
 public class TimerManager : MonoBehaviour {
 
-	public float timeLeft;
+	public float startingTime;
 	public GameObject timerText;
 	public GameObject sceneManager;
 
 	private SceneManager sceneManagerScript;
+	private float timeLeft;
 	float minutesLeft;
 	float secondsLeft;
 
 	void Start(){
 		sceneManagerScript = sceneManager.GetComponent<SceneManager> ();
+		timeLeft = startingTime;
 	}
 
 	void Update () {
@@ -31,5 +33,9 @@ public class TimerManager : MonoBehaviour {
 		} 
 
 		timerText.GetComponent<Text>().text = minutesLeft.ToString("00") + ":" + secondsLeft.ToString("00");
+	}
+
+	public void restartTimer (){
+		timeLeft = startingTime;
 	}
 }

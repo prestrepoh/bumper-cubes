@@ -9,17 +9,21 @@ public class SceneManager : MonoBehaviour {
 	private int player1Score;
 	private int player2Score;
 	private bool gameHasEnded;
+	private bool goldenGoal;
 
 	private ScoreManager scoreManagerScript; 
 	private HUDManager hudManagerScript;
+	private SceneStartManager sceneStartManagerScript;
 
 	void Start () {
 		player1Score = 0;
 		player2Score = 0;
 		gameHasEnded = false;
+		goldenGoal = false;
 
-		scoreManagerScript = gameObject.GetComponentInParent<ScoreManager>( );
+		scoreManagerScript = gameObject.GetComponentInParent<ScoreManager>();
 		hudManagerScript = gameObject.GetComponent<HUDManager> ();
+		sceneStartManagerScript = gameObject.GetComponent<SceneStartManager> ();
 	}
 
 	public void scoreGoalForPlayer1(){
@@ -43,12 +47,23 @@ public class SceneManager : MonoBehaviour {
 			} else if (player2Score > player1Score) {
 				player2Wins ();
 			} else {
-				goToGoldenGoal ();
+				hudManagerScript.playGoldenGoalAnimation ();
+				goldenGoal = true;
+			}
+		}
+
+		if(goldenGoal){
+			if (player1Score > player2Score) {
+				goldenGoal = false;
+				player1Wins ();
+			} else if (player2Score > player1Score) {
+				goldenGoal = false;
+				player2Wins ();
 			}
 		}
 
 		if(hudManagerScript.allAnimationsHaveFinished()){
-			restartLevel ();
+			restartMatch ();
 		}
 	}
 
@@ -61,10 +76,15 @@ public class SceneManager : MonoBehaviour {
 	}
 
 	private void goToGoldenGoal(){
-		Debug.Log ("It's a draw!");
+		hudManagerScript.playGoldenGoalAnimation ();
 	}
 
-	private void restartLevel(){
-		Debug.Log ("Level would be restarted");
+	private void restartMatch(){
+		player1Score = 0;
+		player2Score = 0;
+		gameHasEnded = false;
+		goldenGoal = false;
+		hudManagerScript.restartAnimatorStatus ();
+		sceneStartManagerScript.restartScene ();
 	}
 }

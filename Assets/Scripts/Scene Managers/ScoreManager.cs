@@ -15,4 +15,9 @@ public class ScoreManager : MonoBehaviour {
 	public void setPlayer2ScoreText(int goals){
 		player2ScoreText.GetComponent <Text> ().text = goals.ToString ();
 	}
+
+	public void restartScoreTexts(){
+		player1ScoreText.GetComponent <Text> ().text = "0";
+		player2ScoreText.GetComponent <Text> ().text = "0";
+	}
 }

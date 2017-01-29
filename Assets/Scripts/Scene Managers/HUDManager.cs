@@ -20,7 +20,20 @@ public class HUDManager : MonoBehaviour {
 		hudCanvasAnimator.SetTrigger("player2Wins");
 	}
 
+	public void playGoldenGoalAnimation(){
+		hudCanvasAnimator.SetBool ("goldenGoal",true);
+	}
+
+	public void stopGoldenGoalAnimation(){
+		hudCanvasAnimator.SetBool("goldenGoal",false);
+	}
+
 	public bool allAnimationsHaveFinished(){
 		return hudCanvasAnimator.GetBool ("AllAnimationsFinished");
+	}
+
+	public void restartAnimatorStatus(){
+		hudCanvasAnimator.SetBool("AllAnimationsFinished",false);
+		hudCanvasAnimator.SetBool("goldenGoal",false);
 	}
 }
