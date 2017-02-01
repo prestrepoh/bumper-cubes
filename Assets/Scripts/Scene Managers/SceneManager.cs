@@ -29,11 +29,17 @@ public class SceneManager : MonoBehaviour {
 	public void scoreGoalForPlayer1(){
 		player1Score++;
 		scoreManagerScript.setPlayer1ScoreText (player1Score);
+		if (!goldenGoal) {
+			restartSceneElementsPosition ();
+		}
 	}
 
 	public void scoreGoalForPlayer2(){
 		player2Score++;
 		scoreManagerScript.setPlayer2ScoreText (player2Score);
+		if (!goldenGoal) {
+			restartSceneElementsPosition ();
+		}
 	}
 
 	public void timeUp(){
@@ -77,6 +83,11 @@ public class SceneManager : MonoBehaviour {
 
 	private void goToGoldenGoal(){
 		hudManagerScript.playGoldenGoalAnimation ();
+	}
+
+	private void restartSceneElementsPosition(){
+		sceneStartManagerScript.resetPlayersTransform ();
+		sceneStartManagerScript.setBallToInitialState ();
 	}
 
 	private void restartMatch(){

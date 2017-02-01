@@ -37,22 +37,34 @@ public class SceneStartManager : MonoBehaviour {
 	}
 
 	public void restartScene(){
-		player1.transform.position = player1StartingPosition;
-		player2.transform.position = player2StartingPosition;
-
+		resetPlayersTransform ();
 		setBallToInitialState ();
-
-		player1.transform.rotation = player1StartingRotation;
-		player2.transform.rotation = player2StartingRotation;
 
 		timerManagerScript.restartTimer ();
 		scoreManagerScript.restartScoreTexts ();
 	}
 
-	private void setBallToInitialState(){
+	public void setBallToInitialState(){
+		ball.GetComponent<Rigidbody> ().velocity = Vector3.zero;
+		ball.GetComponent<Rigidbody> ().angularVelocity = Vector3.zero;
 		ball.transform.position = ballStartingPosition;
 		Vector3 initialForce = new Vector3(0,0,Random.Range(minimumBallStartingForce,maximumBallStartingForce));
 		ball.GetComponent<Rigidbody> ().AddForce(initialForce);
+	}
+
+	public void resetPlayersTransform(){
+		resetPlayersPosition ();
+		resetPlayersRotation ();
+	}
+
+	private void resetPlayersPosition(){
+		player1.transform.position = player1StartingPosition;
+		player2.transform.position = player2StartingPosition;
+	}
+
+	private void resetPlayersRotation(){
+		player1.transform.rotation = player1StartingRotation;
+		player2.transform.rotation = player2StartingRotation;
 	}
 		
 }
