@@ -14,6 +14,7 @@ public class SceneManager : MonoBehaviour {
 	private ScoreManager scoreManagerScript; 
 	private HUDManager hudManagerScript;
 	private SceneStartManager sceneStartManagerScript;
+	private SoundManager soundManagerScript;
 
 	void Start () {
 		player1Score = 0;
@@ -24,6 +25,18 @@ public class SceneManager : MonoBehaviour {
 		scoreManagerScript = gameObject.GetComponentInParent<ScoreManager>();
 		hudManagerScript = gameObject.GetComponent<HUDManager> ();
 		sceneStartManagerScript = gameObject.GetComponent<SceneStartManager> ();
+		soundManagerScript = gameObject.GetComponentInParent<SoundManager>( );
+
+		// Initializer
+		componentsInitializer();
+	}
+
+	/**
+	 * Method in charge of initializing the transversal components for the game
+	 */
+	void componentsInitializer() {
+		soundManagerScript.playStarGameSound ();
+		soundManagerScript.playAmbientSound ();
 	}
 
 	public void scoreGoalForPlayer1(){
@@ -32,6 +45,7 @@ public class SceneManager : MonoBehaviour {
 		if (!goldenGoal) {
 			restartSceneElementsPosition ();
 		}
+		generalGoal ();
 	}
 
 	public void scoreGoalForPlayer2(){
@@ -40,6 +54,7 @@ public class SceneManager : MonoBehaviour {
 		if (!goldenGoal) {
 			restartSceneElementsPosition ();
 		}
+		generalGoal ();
 	}
 
 	public void timeUp(){
@@ -97,5 +112,17 @@ public class SceneManager : MonoBehaviour {
 		goldenGoal = false;
 		hudManagerScript.restartAnimatorStatus ();
 		sceneStartManagerScript.restartScene ();
+	}
+
+
+	/**
+	 * Method responsible for firing events at the time of a goal at any goal
+	 */
+	void generalGoal() {
+		soundManagerScript.playGoalSound ();
+	}
+
+	public void missGoalSound() {
+		soundManagerScript.playMissGoalSound ();
 	}
 }
